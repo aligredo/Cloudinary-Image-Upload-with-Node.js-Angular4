@@ -4,9 +4,6 @@ var express = require("express"),
   	routes = require("./routes"),
     router = express.Router();
     var path = require('path');
-
-
-
     app = express();
     /*
       Middleware to parse the request body that is in format "application/json" or
