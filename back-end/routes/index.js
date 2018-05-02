@@ -6,7 +6,7 @@ var express = require("express"),
 	var path = require('path');
 	var express = require('express');
 	var app = express();
-	
+
 	cloudinary.config({  //Your Cloudinary API Data
 	  cloud_name: '*********',
 	  api_key: '*************',

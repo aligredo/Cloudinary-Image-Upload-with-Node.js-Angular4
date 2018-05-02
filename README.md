@@ -9,7 +9,8 @@ The basic sample uploads local image to Cloudinary using multer-storage-cloudina
 1. Before running the sample, copy the Environment variable configuration parameters from Cloudinary's [Management Console](https://cloudinary.com/console) of your account into `backend/routes/index.js` file of the project.
 1. Run `npm install` in project back-end directory to bring all the required modules.
 1. Run the sample using `npm start` to start the server.
-1. Run 'npm install' in project front-end directory to bring all the required modules.
+1. Run `npm install` in project front-end/cloudinary-image-management directory to bring all the required modules.
+1. run `run ng serve` in project front-end/cloudinary-image-management directory to start the angular single page App.
 1. Open the sample page in a browser: http://localhost:4200
 
 
