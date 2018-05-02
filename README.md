@@ -2,7 +2,7 @@
 
 ## Basic sample
 
-The basic sample uploads local image to Cloudinary using multer-storage-cloudinary, the sample uploads the image directly to your cloudinary media library
+The basic sample uploads local image to Cloudinary using multer-storage-cloudinary, the sample uploads the image directly to your cloudinary media library.
 
 ### Setting up
 
