@@ -6,8 +6,8 @@
   </h1>
   <label for="ImageUpload">Upload your Image</label><br>
   <input type="file" id="Image" name="Image"class="upload"(change)="onFileChange($event)" #fileInput>
-<button type="submit" class="submit" (click)="onSubmit($event)">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
-<button type="button" class="clear" (click)="clearFile()">Clear file</button>
+<button type="submit" class="submit" [disabled]="!valid" (click)="onSubmit($event)">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
+<button type="button" class="clear" [disabled]="!valid" (click)="clearFile()">Clear file</button>
 
 <h2>
   {{message}}

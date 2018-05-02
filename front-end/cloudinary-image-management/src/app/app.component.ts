@@ -10,6 +10,7 @@ import { AppService } from "./app.service";
 export class AppComponent {
 @ViewChild("fileInput") fileInput: ElementRef;
   loading: boolean = false;
+  valid: boolean = false;
   message: string = "";
   Image: File;
 
@@ -20,6 +21,7 @@ export class AppComponent {
 
    onFileChange(event) {
      this.Image = event.target.files[0]; //To get the image selected by the user
+     this.valid = true;
   }
 
    onSubmit(event) {
@@ -38,6 +40,7 @@ export class AppComponent {
   }
 
    clearFile() {
+     this.valid = false;
      this.message = "Cleared";
     this.fileInput.nativeElement.value = "";
   }
