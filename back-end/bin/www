@@ -1,0 +1,124 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app'),
+  http = require('http');
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+var normalizePort = function(val) {
+  var port = parseInt(val, 10);
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+  return false;
+};
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+var onError = function(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+  var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+};
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+var onListening = function() {
+  var addr = server.address();
+  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+};
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+
+var server = http.createServer(app);
+var io =require('socket.io').listen(server);
+
+var usr = [];
+io.on('connection' , function(socket){
+
+    socket.emit('myId', usr.length);
+	usr.push(usr.length);
+
+	io.emit('createUsuarios', usr);
+    socket.on('part', function(data){
+      socket.emit('part', data);
+    });
+
+    socket.on('updateImage', function(data){
+      socket.broadcast.emit('updateImage',data);
+    });
+
+    socket.on('disconnect', function () {
+
+      });
+	//join method
+  socket.on('join', function(data){
+      //joining
+      socket.join(data.room);
+
+       //it broadcast that the user has joined this room
+      socket.broadcast.to(data.room).emit('new user joined', {user:data.user, message:'has joined this room.'});
+
+    });
+    //leaving room
+    socket.on('leave', function(data){
+
+      // it broadcasts that the user has left the room
+      socket.broadcast.to(data.room).emit('left room', {user:data.user, message:'has left this room.'});
+
+
+      socket.leave(data.room);
+    });
+    //chat messages
+    socket.on('message',function(data){
+       //show the message with the email of the sender
+      io.in(data.room).emit('new message', {user:data.user, message:data.message});
+    })
+
+});
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);

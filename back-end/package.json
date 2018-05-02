@@ -1,0 +1,35 @@
+{
+  "name": "cloudinary_image_management_nodejs",
+  "version": "1.0.0",
+  "description": "Simple back-end app for image management using cloudinary api",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aligredo/Cloudinary-Image-Management-with-Node.js-Angular4.git"
+  },
+  "keywords": [
+    "cloudinary",
+    "nodejs",
+    "imageupload"
+  ],
+  "author": "Ali Ahmed (@aligredo)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aligredo/Cloudinary-Image-Management-with-Node.js-Angular4/issues"
+  },
+  "homepage": "https://github.com/aligredo/Cloudinary-Image-Management-with-Node.js-Angular4#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cloudinary": "^1.11.0",
+    "debug": "^3.1.0",
+    "express": "^4.16.3",
+    "multer": "^1.3.0",
+    "multer-storage-cloudinary": "^2.2.1",
+    "socket.io": "^2.1.0",
+    "socket.io-client": "^2.1.0"
+  }
+}
